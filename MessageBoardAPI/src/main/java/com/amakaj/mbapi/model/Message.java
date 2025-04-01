@@ -1,25 +1,34 @@
 package com.amakaj.mbapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "messages")
 public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String content;
+    private String createdBy;
+    private LocalDateTime dateTimeStamp;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
+    public LocalDateTime getDateTimeStamp() {
+        return dateTimeStamp;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setDateTimeStamp(LocalDateTime dateTimeStamp) {
+        this.dateTimeStamp = dateTimeStamp;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getContent() {
@@ -29,4 +38,13 @@ public class Message {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

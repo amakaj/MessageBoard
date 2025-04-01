@@ -17,7 +17,6 @@ public class MessageController {
 
     @GetMapping
     public List<Message> getAllMessages() {
-        System.out.println("Hello World");
         return messageService.getAllMessages();
     }
 
