@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.amakaj.mbapi.repository")
 public class MessageBoardApiApplication {
-
+//test comment
     public static void main(String[] args) {
         SpringApplication.run(MessageBoardApiApplication.class, args);
     }
