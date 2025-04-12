@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'tmakaj-webapp'
+          app-name: 'tmakaj-apiapp'
           slot-name: 'Production'
           restart: true
           package: '*.jar'
