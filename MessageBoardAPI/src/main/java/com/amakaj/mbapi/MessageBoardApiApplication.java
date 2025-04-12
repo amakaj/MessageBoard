@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.amakaj.mbapi.repository")
+@EnableJpaRepositories(basePackages = "com.amakaj.mbapi.repository") //test comment
 public class MessageBoardApiApplication {
 
     public static void main(String[] args) {
