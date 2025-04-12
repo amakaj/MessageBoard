@@ -1,0 +1,56 @@
+name: Build & Deploy API
+
+on:
+  push:
+    branches:
+      - dev-api
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: windows-latest
+    permissions:
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java version
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'microsoft'
+
+      - name: Build with Maven
+        working-directory: ./MessageBoardApi
+        run: mvn clean install -DskipTests=true
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-app
+          path: '${{ github.workspace }}/MessageBoardApi/target/*.jar'
+
+  Deploy:
+    runs-on: windows-latest
+    needs: Build
+    environment:
+      name: 'Development'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: java-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'tmakaj-apiapp'
+          slot-name: 'Production'
+          restart: true
+          package: '*.jar'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+
