@@ -53,6 +53,7 @@ jobs:
         with:
           app-name: 'tmakaj-webapp'
           slot-name: 'Production'
+          restart: true
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
 
