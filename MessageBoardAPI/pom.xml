@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.amakaj</groupId>
     <artifactId>mbapi</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>MessageBoardAPI</name>
     <description>MessageBoardAPI</description>
     <url/>
