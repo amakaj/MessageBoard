@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -25,7 +24,7 @@ public class MessageController {
 
     @PostMapping
     public Message createMessage(@RequestBody Message message) {
-        if (message.getId() != 0) {
+        if (message.getMessageId() != 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID should not be provided");
         }
 

@@ -5,31 +5,19 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "messages")
+@Table(name = "message")
 public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "message_id")
+    private int messageId;
     private String content;
-    private String createdBy;
     private LocalDateTime dateTimeStamp;
 
-    public LocalDateTime getDateTimeStamp() {
-        return dateTimeStamp;
-    }
-
-    public void setDateTimeStamp(LocalDateTime dateTimeStamp) {
-        this.dateTimeStamp = dateTimeStamp;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
 
     public String getContent() {
         return content;
@@ -39,7 +27,23 @@ public class Message {
         this.content = content;
     }
 
-    public int getId() {
-        return id;
+    public int getMessageId() {
+        return messageId;
+    }
+
+    public LocalDateTime getDateTimeStamp() {
+        return dateTimeStamp;
+    }
+
+    public void setDateTimeStamp(LocalDateTime dateTimeStamp) {
+        this.dateTimeStamp = dateTimeStamp;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
